@@ -1,10 +1,10 @@
 "use strict";
 let userInput;
-let userName;
+let Nevername;
 userInput = 5;
 userInput = 'Max';
 if (typeof userInput === 'string') {
-    userName = userInput;
+    Nevername = userInput;
 }
 function generateError(message, code) {
     throw { message: message, errorCode: code };
