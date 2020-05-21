@@ -1,2 +1,5 @@
-const workerName='Prithviraj';
-console.log(workerName);
+const button = document.querySelector('button')!;
+
+button.addEventListener('click', ()=> {
+    console.log('Clicked!!!');
+})
