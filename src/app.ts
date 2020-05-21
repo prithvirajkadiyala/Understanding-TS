@@ -1,7 +1,7 @@
-const userName = 'Max';
-let age = 30;
+// const userName = 'Max';
+// let age = 30;
 
-age = 29;
+// age = 29;
 
 // function add(a:number, b:number) {
 //     let result;
@@ -9,30 +9,48 @@ age = 29;
 //     return result;
 // }
 
-const add = (a:number, b:number = 1) => a + b;
+// const add = (a:number, b:number = 1) => a + b;
 
-console.log(add(2,5));
+// console.log(add(2,5));
 
-const printOutput = (output: string | number) => {
-    console.log(output);
-}
+// const printOutput = (output: string | number) => {
+//     console.log(output);
+// }
 
-const button = document.querySelector('button')!;
+// const button = document.querySelector('button')!;
 
-if(button) {
-    button.addEventListener('click', event=> console.log(event));
-}
+// if(button) {
+//     button.addEventListener('click', event=> console.log(event));
+// }
 
-printOutput(add(5));
+// printOutput(add(5));
 
-const hobbies = ['Sports', 'Cooking'];
-const activeHobbies = ['Hiking', ...hobbies];
+ const hobbies = ['Sports', 'Cooking'];
+// const activeHobbies = ['Hiking', ...hobbies];
 
-console.log(activeHobbies);
+// console.log(activeHobbies);
 
 const person ={
-    name: 'Max',
+    firstName: 'Max',
     age: 30
 };
 
-const sopiedPerson = {...person};
+// const copiedPerson = {...person};
+
+// const add = (...numbers: number[]) => {
+//     let result;
+//     numbers.reduce((currResult, currValue)=> {
+//         return currResult + currValue;
+//     }, 0);
+// };
+
+// const addedNumbers = add(5,10,2,3.7);
+// console.log(addedNumbers);
+
+const [hobby1, hobby2, ...remaininghobbies] = hobbies;
+
+console.log(hobbies, hobby1, hobby2);
+
+const { firstName: userName, age } = person;
+
+console.log(userName, age);
