@@ -1,56 +1,32 @@
-// const userName = 'Max';
-// let age = 30;
+class Department {
+    name: string;
+    private employees: string[] = [];
 
-// age = 29;
+    constructor(n:string) {
+        this.name = n;
+    }
 
-// function add(a:number, b:number) {
-//     let result;
-//     result = a+ b;
-//     return result;
-// }
+    describe(this: Department) {
+        console.log('Department: ' + this.name);
+    }
 
-// const add = (a:number, b:number = 1) => a + b;
+    addEmployee(employee: string) {
+        this.employees.push(employee);  
+    }
 
-// console.log(add(2,5));
+    printEmployeeInformation() {
+        console.log(this.employees.length);
+        console.log(this.employees);
+    }
+}
 
-// const printOutput = (output: string | number) => {
-//     console.log(output);
-// }
+const accounting = new Department('Accounting');
+accounting.addEmployee('Ava');
+accounting.addEmployee('Max');
 
-// const button = document.querySelector('button')!;
 
-// if(button) {
-//     button.addEventListener('click', event=> console.log(event));
-// }
+accounting.describe();
+accounting.printEmployeeInformation();
+// const accountingCopy = { name: 's', describe: accounting.describe };
 
-// printOutput(add(5));
-
- const hobbies = ['Sports', 'Cooking'];
-// const activeHobbies = ['Hiking', ...hobbies];
-
-// console.log(activeHobbies);
-
-const person ={
-    firstName: 'Max',
-    age: 30
-};
-
-// const copiedPerson = {...person};
-
-// const add = (...numbers: number[]) => {
-//     let result;
-//     numbers.reduce((currResult, currValue)=> {
-//         return currResult + currValue;
-//     }, 0);
-// };
-
-// const addedNumbers = add(5,10,2,3.7);
-// console.log(addedNumbers);
-
-const [hobby1, hobby2, ...remaininghobbies] = hobbies;
-
-console.log(hobbies, hobby1, hobby2);
-
-const { firstName: userName, age } = person;
-
-console.log(userName, age);
+// accountingCopy.describe();
