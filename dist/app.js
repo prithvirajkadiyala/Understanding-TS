@@ -1,6 +1,10 @@
 "use strict";
-const e1 = {
-    name: 'Max',
-    privileges: ['create-server'],
-    startDate: new Date()
-};
+const names = ['Max', 'Manuel'];
+const promise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve('This is done!');
+    }, 2000);
+});
+promise.then(data => {
+    //data.split('');
+});

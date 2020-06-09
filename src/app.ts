@@ -1,23 +1,11 @@
-type Admin = {
-    name: string;
-    privileges: string[];
-}
+const names = ['Max', 'Manuel'];
 
-type Employee = {
-    name: string;
-    startDate: Date;
-}
+const promise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve('This is done!');
+    }, 2000);
+});
 
-//interface ElevatedEmployee extends Employee, Admin {}
-type ElevatedEmployee = Admin & Employee;
-
-const e1: ElevatedEmployee = {
-    name: 'Max',
-    privileges: ['create-server'],
-    startDate: new Date()
-}
-
-type Combinable = string | number;
-type Numeric = number | boolean;
-
-type Universal = Combinable | Numeric;
+promise.then(data => {
+    //data.split('');
+})
