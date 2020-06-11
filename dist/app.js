@@ -102,3 +102,64 @@ let Product = /** @class */ (() => {
 })();
 const p1 = new Product('Book', 19);
 const p2 = new Product('Book 2', 29);
+function Autobind(_, _2, descriptor) {
+    const originalMethod = descriptor.value;
+    const adjDescriptor = {
+        configurable: true,
+        enumerable: false,
+        get() {
+            const boundFn = originalMethod.bind(this);
+            return boundFn;
+        }
+    };
+    return adjDescriptor;
+}
+let Printer = /** @class */ (() => {
+    class Printer {
+        constructor() {
+            this.message = 'This works!';
+        }
+        showMessage() {
+            console.log(this.message);
+        }
+    }
+    __decorate([
+        Autobind
+    ], Printer.prototype, "showMessage", null);
+    return Printer;
+})();
+const p = new Printer();
+p.showMessage();
+const button = document.querySelector('button');
+button === null || button === void 0 ? void 0 : button.addEventListener('click', p.showMessage);
+function Required() { }
+function PositiveNumber() { }
+function validate(obj) { }
+let Course = /** @class */ (() => {
+    class Course {
+        constructor(t, p) {
+            this.title = t;
+            this.price = p;
+        }
+    }
+    __decorate([
+        Required
+    ], Course.prototype, "title", void 0);
+    __decorate([
+        PositiveNumber
+    ], Course.prototype, "price", void 0);
+    return Course;
+})();
+const courseForm = document.querySelector('form');
+courseForm === null || courseForm === void 0 ? void 0 : courseForm.addEventListener('submit', event => {
+    event.preventDefault();
+    const titleEl = document.getElementById('title');
+    const priceEl = document.getElementById('price');
+    const title = titleEl.value;
+    const price = priceEl.value;
+    const createdCourse = new Course(title, price);
+    if (!validate(createdCourse)) {
+        alert('Invalid details');
+    }
+    console.log(createdCourse);
+});
