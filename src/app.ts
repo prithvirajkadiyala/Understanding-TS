@@ -126,11 +126,49 @@ function Logger(logString: string) {
   const button = document.querySelector('button');
   button?.addEventListener('click', p.showMessage);
 
-  function Required() {}
+  interface ValidatorConfig {
+    [property: string]: {
+      [validatableeProp: string]: string[]
+    }
+  }
 
-  function PositiveNumber() {}
+  const registeredValidators: ValidatorConfig = {};
+ 
+function Required(target: any, propName: string) {
+  registeredValidators[target.constructor.name] = {
+    ...registeredValidators[target.constructor.name],
+    [propName]: [...registeredValidators[target.constructor.name][propName], 'required']
+  };
+}
+ 
+function PositiveNumber(target: any, propName: string) {
+  registeredValidators[target.constructor.name] = {
+    ...registeredValidators[target.constructor.name],
+    [propName]: [...registeredValidators[target.constructor.name][propName], 'positive']
+  };
+}
 
-  function validate(obj:object) {}
+  function validate(obj:any) {
+    const objValidatorConfig = registeredValidators[obj.constructor.name];
+    if(!objValidatorConfig) {
+      return true;
+    }
+    let isValid = true;
+    for(const prop in objValidatorConfig) {
+      for(const validator of objValidatorConfig[prop]) {
+        switch(validator) {
+          case 'required': 
+            isValid = isValid && !!obj[prop];
+            break;
+            
+          case 'positive':
+            isValid = isValid && obj[prop]> 0;
+            break;
+        }
+      }
+    }
+    return isValid;
+  }
 
   
   class Course {
@@ -152,11 +190,12 @@ function Logger(logString: string) {
     const priceEl = document.getElementById('price') as HTMLInputElement;
 
     const title = titleEl.value;
-    const price = priceEl.value;
+    const price = +priceEl.value;
 
     const createdCourse = new Course(title, price);
     if(!validate(createdCourse)) {
       alert('Invalid details');
+      return;
     }
     console.log(createdCourse);
   })
